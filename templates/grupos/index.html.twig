@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Grupos index{% endblock %}
+
+{% block body %}
+
+    <h1>Listado de grupos</h1>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grupo in grupos %}
+            <tr>
+                <td>{{ grupo.id }}</td>
+                <td>{{ grupo.nombre }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_grupos_show', {'id': grupo.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('app_grupos_edit', {'id': grupo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No se encontraron registros.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <a class="btn btn-success" href="{{ path('app_grupos_new') }}">Crear nuevo grupo</a>
+{% endblock %}

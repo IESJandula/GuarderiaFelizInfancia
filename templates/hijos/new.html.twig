@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro de Alumnos{% endblock %}
+
+{% block body %}
+
+    <h1>Matricula a tu hijo!</h1>
+
+    {{ include('hijos/_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-primary" href="{{ path('app_hijos_index') }}">Volver</a>
+    {% endif %}
+{% endblock %}

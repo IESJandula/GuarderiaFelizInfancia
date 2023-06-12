@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+    <div class='form-group'>
+    {{ form_label(form.nombre) }}
+    {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.nombre) }}
+    </div>
+     <div class='form-group'>
+    {{ form_label(form.apellidos) }}
+    {{ form_widget(form.apellidos, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.apellidos) }}
+    </div>
+     <div class='form-group'>
+    {{ form_label(form.fechaNacimiento) }}
+    {{ form_widget(form.fechaNacimiento, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.fechaNacimiento) }}
+    </div>
+     <div class='form-group'>
+    {{ form_label(form.grupos) }}
+    {{ form_widget(form.grupos, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.grupos) }}
+    </div>
+  
+    <button class="btn btn-success">{{ button_label|default('Inscribir!') }}</button>
+    
+{{ form_end(form) }}

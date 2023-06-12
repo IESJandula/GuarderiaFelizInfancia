@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Notificacion{% endblock %}
+
+{% block body %}
+       
+  
+    <h2 class="text-center font-weight-bold">Editar Notificación</h2>
+
+    {{ include('notificacion/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a class="btn btn-primary" href="{{ path('app_notificacion_index') }}">Volver a la lista</a>
+
+    {{ include('notificacion/_delete_form.html.twig') }}
+{% endblock %}

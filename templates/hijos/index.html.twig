@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista Hijos{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center font-weight-bold">Listado de alumnos</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>FechaNacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hijo in hijos %}
+            <tr>
+                <td>{{ hijo.id }}</td>
+                <td>{{ hijo.nombre }}</td>
+                <td>{{ hijo.apellidos }}</td>
+                <td>{{ hijo.fechaNacimiento ? hijo.fechaNacimiento|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_hijos_show', {'id': hijo.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('app_hijos_edit', {'id': hijo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class='btn btn-success' href="{{ path('app_hijos_new') }}">Registrar nuevo alumno</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="text-center font-weight-bold">Registro de Padres/Madres/Tutores legales</h1>
+
+	{{ form_start(registrationForm) }}
+
+	<div class='form-group'>
+		{{ form_label(registrationForm.email) }}
+		{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+		{{ form_errors(registrationForm.email) }}
+	</div>
+
+	<div class='form-group'>
+		{{ form_label(registrationForm.nombre) }}
+		{{ form_widget(registrationForm.nombre, {'attr': {'class': 'form-control'}}) }}
+		{{ form_errors(registrationForm.nombre) }}
+	</div>
+
+	<div class='form-group'>
+		{{ form_label(registrationForm.telefono) }}
+		{{ form_widget(registrationForm.telefono, {'attr': {'class': 'form-control'}}) }}
+		{{ form_errors(registrationForm.telefono) }}
+	</div>
+
+	<div class='form-group'>
+		{{ form_label(registrationForm.plainPassword) }}
+		{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+		{{ form_errors(registrationForm.plainPassword) }}
+	</div>
+
+	<div class='form-group'>
+		{{ form_widget(registrationForm.agreeTerms) }}
+		{{ form_label(registrationForm.agreeTerms) }}
+		{{ form_errors(registrationForm.agreeTerms) }}
+	</div>
+
+	{{ form_widget(registrationForm._token) }}
+	{{ form_widget(registrationForm.submit) }}
+
+	{{ form_end(registrationForm) }}
+
+{% endblock %}

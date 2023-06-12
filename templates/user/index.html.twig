@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de usuarios{% endblock %}
+
+{% block body %}
+
+    <h1>Lista de usuarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Telefono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.Nombre }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+        
+                
+                <td>{{ user.telefono }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_user_show', {'id': user.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_register') }}">Crear nuevo usuario</a>
+{% endblock %}

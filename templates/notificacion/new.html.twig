@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Notificacion{% endblock %}
+
+{% block body %}
+    <h1 class="text-center font-weight-bold">Crea una notificacion</h1>
+
+    {{ include('notificacion/_form.html.twig') }}
+
+    <a class="btn btn-primary"  href="{{ path('app_notificacion_index') }}">Volver a la lista</a>
+{% endblock %}

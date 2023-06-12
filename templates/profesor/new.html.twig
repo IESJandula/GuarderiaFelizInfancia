@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Profesor{% endblock %}
+
+{% block body %}
+    <h2 class="text-center font-weight-bold">Create new Profesor</h2>
+
+    {{ include('profesor/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_profesor_index') }}">Volver a la lista</a>
+{% endblock %}

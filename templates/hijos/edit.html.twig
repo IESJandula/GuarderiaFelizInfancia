@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar alumnos
+{% endblock %}
+
+{% block body %}
+
+	<h1>Editar alumnos</h1>
+
+	{{ include('hijos/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+	
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_hijos_index') }}">Volver</a>
+		{{ include('hijos/_delete_form.html.twig') }}
+	{% endif %}
+
+{% endblock %}

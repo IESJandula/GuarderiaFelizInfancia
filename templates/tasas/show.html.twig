@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasas{% endblock %}
+
+{% block body %}
+
+    <h1>Tasas</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tasa.id }}</td>
+            </tr>
+            <tr>
+                <th>FechaPago</th>
+                <td>{{ tasa.FechaPago ? tasa.FechaPago|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ tasa.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Pagado</th>
+                <td>{{ tasa.pagado ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_tasas_index') }}">Volver a la lista</a>
+
+    <a  class="btn btn-success" href="{{ path('app_tasas_edit', {'id': tasa.id}) }}">Editar</a>
+
+    {{ include('tasas/_delete_form.html.twig') }}
+{% endblock %}

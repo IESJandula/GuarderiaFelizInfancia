@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario{% endblock %}
+
+{% block body %}
+
+    <h1>Usuario</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <!--
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            -->
+            <!--
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            -->
+            <tr>
+                <th>Nombre</th>
+                <td>{{ user.Nombre }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ user.telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %} <!-- No se podrá borrar el usuario por su parte -->
+      {{ include('user/_delete_form.html.twig') }}
+       <a class="btn btn-primary" href="{{ path('app_user_index') }}">Volver</a>
+    {% endif %}
+
+        
+
+    <a class="btn btn-success" href="{{ path('app_user_edit', {'id': user.id}) }}">Editar</a>
+    <table class="table"> <!--Tabla para mostrar a los hijos -->
+    <h2 >Mis hijos</h2>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Fecha Nacimiento</th>
+    </tr>
+    {% for item in hijos %}
+        <tr>
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellidos}}</td>
+            <td>{{item.getFechaNacimiento()|date('d/m/Y')}}</td>
+            <td><a class="btn btn-info" href="{{ path('app_hijos_show', {'id': item.id}) }}">Ver</a></td>
+            <!-- El hijo no deberia deletearlo el padre.
+            <td><a class="btn btn-danger" href="{{ path('app_hijos_delete', {'id': item.id}) }}">Borrar</a></td>
+            -->
+        </tr>
+    {% endfor %}
+    </table>
+    <!--
+    <a class="btn btn-secondary" href="{{ path('app_user_index') }}">back to list</a>
+
+    <a class="btn btn-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+    -->
+  
+{% endblock %}

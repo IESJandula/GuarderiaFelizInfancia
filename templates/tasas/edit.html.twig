@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Tasa{% endblock %}
+
+{% block body %}
+
+    <h1>Editar tasa</h1>
+
+    {{ include('tasas/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-primary" href="{{ path('app_tasas_index') }}">Volver a la lista</a>
+
+    {{ include('tasas/_delete_form.html.twig') }}
+{% endblock %}

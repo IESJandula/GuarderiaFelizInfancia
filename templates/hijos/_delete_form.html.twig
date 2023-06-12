@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('app_hijos_delete', {'id': hijo.id}) }}" 
+onsubmit="return confirm('¿Seguro que deseas borrar el registro?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ hijo.id) }}">
+    <button class="btn btn-danger">Borrar</button>
+</form>

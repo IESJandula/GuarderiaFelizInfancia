@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hijos
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center font-weight-bold">Hijo</h1>
+
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ hijo.id }}</td>
+			</tr>
+			<tr>
+				<th>Nombre</th>
+				<td>{{ hijo.nombre }}</td>
+			</tr>
+			<tr>
+				<th>Apellidos</th>
+				<td>{{ hijo.apellidos }}</td>
+			</tr>
+			<tr>
+				<th>FechaNacimiento</th>
+				<td>{{ hijo.fechaNacimiento ? hijo.fechaNacimiento|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Grupo</th>
+				<td>
+					{{hijo.grupos.getNombre() }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	{% if is_granted('ROLE_ADMIN') %}
+	<a class="btn btn-primary" href="{{ path('app_hijos_index') }}">Volver a la Lista</a>
+	{% endif %}
+	<a class="btn btn-success" href="{{ path('app_hijos_edit', {'id': hijo.id}) }}">Modificar datos</a>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		{{ include('hijos/_delete_form.html.twig') }}
+	{% endif %}
+    <br>
+    
+	<table class='table table-striped'>
+		<h2 class="text-center font-weight-bold">Tasas</h2>
+		<tr>
+			<th>Cantidad</th>
+			<th>Fecha</th>
+			<th>Pago</th>
+			<th>Nombre tasa</th>
+		</tr>
+       
+		{% for item in tasas %}
+			<tr>
+				<td>
+					{{item.getCantidad()}}
+				</td>
+				<td>
+					{{item.getFechaPago()|date('d-m-Y')}}
+				</td>
+				<td>
+					{% if item.isPagado() %}
+						Si
+					{% else %}
+						No
+					{% endif %}
+				</td>
+                <td>
+                     {{item.getNombre()}}
+                </td>
+			</tr>
+		{% endfor %}
+	</table>
+   
+	<table class="table table-striped">
+	<h2 class="text-center font-weight-bold">Notificaciones</h2>
+		<tr>
+			<th>Asunto</th>
+			<th>Contenido</th>
+			<th>Fecha</th>
+		</tr>
+		{% for item in notificaciones %}
+			<tr>
+				<td>{{ item.getAsunto() }}</td>
+				<td>{{ item.getContenido() }}</td>
+				<td>{{ item.getFecha()|date("d-m-Y") }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+{% endblock %}

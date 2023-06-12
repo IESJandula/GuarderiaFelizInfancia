@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de tasas{% endblock %}
+
+{% block body %}
+
+    <h1>Listado de Tasas</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FechaPago</th>
+                <th>Cantidad</th>
+                <th>Pagado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tasa in tasas %}
+            <tr>
+                <td>{{ tasa.id }}</td>
+                <td>{{ tasa.FechaPago ? tasa.FechaPago|date('Y-m-d') : '' }}</td>
+                <td>{{ tasa.cantidad }}</td>
+                <td>{{ tasa.pagado ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_tasas_show', {'id': tasa.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('app_tasas_edit', {'id': tasa.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_tasas_new') }}">Crear tasa </a>
+{% endblock %}

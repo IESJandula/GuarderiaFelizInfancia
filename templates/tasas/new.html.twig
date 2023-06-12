@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva tasa{% endblock %}
+
+{% block body %}
+
+    <h1>Crea una nueva tasa</h1>
+
+    {{ include('tasas/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_tasas_index') }}">Volver a la lista</a>
+{% endblock %}

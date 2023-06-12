@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notificacion index{% endblock %}
+
+{% block body %}
+    <h2 class="text-center font-weight-bold">Lista de notificaciones</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Asunto</th>
+                <th>Contenido</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notificacion in notificacions %}
+            <tr>
+                <td>{{ notificacion.id }}</td>
+                <td>{{ notificacion.asunto }}</td>
+                <td>{{ notificacion.contenido }}</td>
+                <td>{{ notificacion.fecha ? notificacion.fecha|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_notificacion_show', {'id': notificacion.id}) }}">Ver</a>
+                    <a class="btn btn-primary" href="{{ path('app_notificacion_edit', {'id': notificacion.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_notificacion_new') }}">Crear nueva notificacion</a>
+{% endblock %}
